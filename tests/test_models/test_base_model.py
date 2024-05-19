@@ -3,6 +3,8 @@
 """Unittest"""
 
 import unittest
+import uuid
+import models
 from models.base_model import BaseModel
 from datetime import datetime
 import os
