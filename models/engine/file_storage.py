@@ -17,39 +17,50 @@ from models.review import Review
 
 class FileStorage:
     """ Manage storage of bnb models in JSON file format"""
-    __file_path = 'file.json'  # path to file
-    __objects = {}  # storage dictionary
+   
+CLASSES = {
+        'BaseModel': BaseModel,
+        'User': User,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Place': Place,
+        'Review': Review
+    }
+
+    __file_path = "file.json"  # path to the JSON file
+    __objects = {}  # dictionary to store all objects by <class name>.id
 
     def all(self):
-        """Returns stored models' dictionary"""
-        return FileStorage.__objects
+        """Returns objects"""
+        return self.__objects
 
     def new(self, obj):
-        """Adds new object with the key"""
-        self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
+        """Sets new objects"""
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        self.__objects[key] = obj
 
     def save(self):
-        """Saves storage dictionary to JSON file"""
-        with open(FileStorage.__file_path, 'w') as f:
-            temp = {}
-            temp.update(FileStorage.__objects)
-            for key, val in temp.items():
-                temp[key] = val.to_dict()
-            json.dump(temp, f)
+        """Save objects to file"""
+        serialized_objects = {}
+        for key, obj in self.__objects.items():
+            serialized_objects[key] = obj.to_dict()
+
+        with open(self.__file_path, 'w') as file:
+            json.dump(serialized_objects, file)
 
     def reload(self):
-        """Loads dictionary from JSON file"""
+        """
+        Deserializes the file to objects"""
+        if path.exists(self.__file_path):
+            with open(self.__file_path, 'r', encoding="utf-8") as file:
+                serialized_objects = json.load(file)
+                for key, obj_data in serialized_objects.items():
+                    class_name, obj_id = key.split('.')
+                    # creates instances
+                    obj_class = globals()[class_name]
+                    obj_instance = obj_class(**obj_data)
+                    # Store instances
+                    self.__objects[key] = obj_instance
 
-        classes = {
-                    'BaseModel': BaseModel, 'User': User, 'Place': Place,
-                    'State': State, 'City': City, 'Amenity': Amenity,
-                    'Review': Review
-                  }
-        try:
-            temp = {}
-            with open(FileStorage.__file_path, 'r') as f:
-                temp = json.load(f)
-                for key, val in temp.items():
-                        self.all()[key] = classes[val['__class__']](**val)
-        except FileNotFoundError:
-            pass
+    
