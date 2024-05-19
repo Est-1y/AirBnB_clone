@@ -205,45 +205,46 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        rex = r'^(\S+)(?:\s(\S+)(?:\s(\S+)(?:\s(".*"|[^"]\S*)?)?)?)?'
-        match = re.search(rex, line)
-
-        if not match:
-            print("** invalid command format **")
-            return
-
-        classname, uid, attribute, value = match.groups()
-
-        if classname not in self.CLASSES:
+        class_name = args[0]
+        if class_name not in self.CLASSES:
             print("** class doesn't exist **")
             return
-        elif not uid:
+
+        if len(args) < 2:
             print("** instance id missing **")
             return
 
-        key = f"{classname}.{uid}"
+        instance_id = args[1]
+        key = f"{class_name}.{instance_id}"
         if key not in storage.all():
             print("** no instance found **")
-            return
-        elif not attribute:
-            print("** attribute name missing **")
-            return
-        elif not value:
-            print("** value missing **")
             return
 
         obj = storage.all()[key]
 
-        # Store updated_at values
-        # prev_updated_at = obj.updated_at
+        if len(args) == 3:
+            # Handle the dictionary
+            try:
+                attr_dict = eval(args[2])
+                if isinstance(attr_dict, dict):
+                    for attr_name, attr_value in attr_dict.items():
+                        setattr(obj, attr_name, attr_value)
+                    obj.save()
+                else:
+                    print("** dictionary format invalid **")
+            except Exception as e:
+                print("** dictionary format invalid **")
+                print(e)
+        elif len(args) == 4:
+            # Handle attribute
+            attr_name = args[2]
+            attr_value = args[3]
+            setattr(obj, attr_name, attr_value)
+            obj.save()
+        else:
+            print("** attribute name or value missing **")
 
-        # Simplify attributes
-        setattr(obj, attribute, value)
-
-        # update attribute
-        # obj.updated_at = datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')
-        storage.all()[key].save()
-
+        
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop
