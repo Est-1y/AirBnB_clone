@@ -2,7 +2,7 @@
 """state unittest"""
 
 import unittest
-from models import State
+from models.base_model import BaseModel
 from datetime import datetime
 import os
 
