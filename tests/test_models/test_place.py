@@ -2,7 +2,6 @@
 """place unittest """
 
 import unittest
-from tests.test_models.test_base_model import test_basemodel
 from models import Place
 from datetime import datetime
 import os
@@ -37,22 +36,22 @@ class TestPlaceModel(unittest.TestCase):
 
     def test_str(self):
         """ test string"""
-        str = str(self.place_model)
-        self.assertIn("[Place]", str)
-        self.assertIn("id", str)
-        self.assertIn("created_at", str)
-        self.assertIn("updated_at", str)
-        self.assertIn("city_id", str)
-        self.assertIn("user_id", str)
-        self.assertIn("name", str)
-        self.assertIn("description", str)
-        self.assertIn("number_rooms", str)
-        self.assertIn("number_bathrooms", str)
-        self.assertIn("max_guest", str)
-        self.assertIn("price_by_night", str)
-        self.assertIn("latitude", str)
-        self.assertIn("longitude", str)
-        self.assertIn("amenity_ids", str)
+        str = test_string_representation(self.place_model)
+        self.assertIn("[Place]", string_repr)
+        self.assertIn("id", string_repr)
+        self.assertIn("created_at", string_repr)
+        self.assertIn("updated_at", string_repr)
+        self.assertIn("city_id", string_repr)
+        self.assertIn("user_id", string_repr)
+        self.assertIn("name", string_repr)
+        self.assertIn("description", string_repr)
+        self.assertIn("number_rooms", string_repr)
+        self.assertIn("number_bathrooms", string_repr)
+        self.assertIn("max_guest", string_repr)
+        self.assertIn("price_by_night", string_repr)
+        self.assertIn("latitude", string_repr)
+        self.assertIn("longitude", string_repr)
+        self.assertIn("amenity_ids", string_repr)
 
     def test_to_dict(self):
         """ """
