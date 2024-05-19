@@ -29,17 +29,17 @@ class TestUserModel(unittest.TestCase):
         self.assertTrue(hasattr(self.user_model, 'first_name'))
         self.assertTrue(hasattr(self.user_model, 'last_name'))
 
-    def test_str(self):
+    def test_string_representation(self):
         """string test """
-        str = str(self.user_model)
-        self.assertIn("[User]", str)
-        self.assertIn("id", str)
-        self.assertIn("created_at", str)
-        self.assertIn("updated_at", str)
-        self.assertIn("email", str)
-        self.assertIn("password", str)
-        self.assertIn("first_name", str)
-        self.assertIn("last_name", str)
+        string_repr = str(self.user_model)
+        self.assertIn("[User]", string_repr)
+        self.assertIn("id", string_repr)
+        self.assertIn("created_at", string_repr)
+        self.assertIn("updated_at", string_repr)
+        self.assertIn("email", string_repr)
+        self.assertIn("password", string_repr)
+        self.assertIn("first_name", string_repr)
+        self.assertIn("last_name", string_repr)
 
     def test_to_dict_method(self):
         """ """
