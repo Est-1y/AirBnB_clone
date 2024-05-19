@@ -61,3 +61,6 @@ class FileStorage:
                     obj_instance = obj_class(**obj_data)
                     # Store instances
                     self.__objects[key] = obj_instance
+    def reset(self):
+        """Clears objects"""
+        self.__objects = {}
