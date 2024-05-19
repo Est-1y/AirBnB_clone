@@ -16,7 +16,7 @@ import os
 class TestFileStorage(unittest.TestCase):
     """storage test """
     def setUp(self):
-        self.file_storage = storage()
+        storage.FileStorage()
 
     def tearDown(self):
         """ """
