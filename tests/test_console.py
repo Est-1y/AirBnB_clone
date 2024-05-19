@@ -71,7 +71,7 @@ class TestConsole(unittest.TestCase):
         self.assertEqual(updated_obj.name, "New Name")
 
     def test_invalid_commands(self):
-        storage.reset()
+        self._reset_storage()
 
         # Invalid_create -command
         expected_output = "** class doesn't exist **\n"
