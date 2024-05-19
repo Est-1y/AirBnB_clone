@@ -18,7 +18,7 @@ class test_basemodel(unittest.TestCase):
         del self.base_model
 
 def test_instance_creation(self):
-    """ Instance creation and updation"""
+        """ Instance creation and updation"""
         self.assertIsInstance(self.base_model, BaseModel)
         self.assertTrue(hasattr(self.base_model, 'id'))
         self.assertTrue(hasattr(self.base_model, 'created_at'))
