@@ -14,6 +14,7 @@ class test_basemodel(unittest.TestCase):
         pass
 
     def tearDown(self):
+        """ """
         del self.base_model
 
 def test_instance_creation(self):
@@ -23,13 +24,13 @@ def test_instance_creation(self):
         self.assertTrue(hasattr(self.base_model, 'created_at'))
         self.assertTrue(hasattr(self.base_model, 'updated_at'))
 
-    def test_str(self):
+    def test_string_representation(self):
         """string unittest """
-        str = str(self.base_model)
-        self.assertIn("[BaseModel]", str)
-        self.assertIn("id", str)
-        self.assertIn("created_at", str)
-        self.assertIn("updated_at", str)
+        string_repr = str(self.base_model)
+        self.assertIn("[BaseModel]", string_repr)
+        self.assertIn("id", string_repr)
+        self.assertIn("created_at", string_repr)
+        self.assertIn("updated_at", string_repr)
 
     def test_save(self):
         """test unittest"""
