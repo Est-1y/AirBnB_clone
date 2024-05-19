@@ -83,6 +83,7 @@ class TestConsole(unittest.TestCase):
         expected_output = "** class doesn't exist **\n"
         self.assert_stdout(expected_output, "update InvalidClass")
 
+    @patch('sys.stdout', new_callable=StringIO)
     def test_empty_line_quit_commands(self):
 
         # Empty_line
@@ -92,6 +93,7 @@ class TestConsole(unittest.TestCase):
         # Quit_command
         self.assertTrue(self.console.onecmd("quit"))
 
+    @patch('sys.stdout', new_callable=StringIO)
     def test_help_commands(self):
         expected_output = "Quit command to exit the program\n"
         self.assert_stdout(expected_output, "help quit")
