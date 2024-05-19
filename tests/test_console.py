@@ -18,9 +18,11 @@ class TestConsole(unittest.TestCase):
         cls.console = HBNBCommand()
 
     def setUp(self):
+        """ """
         self.console.preloop()
 
     def tearDown(self):
+        """ """
         self.console.postloop()
 
     @patch('sys.stdout', new_callable=StringIO)
