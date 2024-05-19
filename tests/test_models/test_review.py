@@ -8,6 +8,7 @@ import os
 
 
 class TestReviewModel(unittest.TestCase):
+    """ """
     def setUp(self):
         self.review_model = Review()
 
@@ -25,16 +26,16 @@ class TestReviewModel(unittest.TestCase):
         self.assertTrue(hasattr(self.review_model, 'user_id'))
         self.assertTrue(hasattr(self.review_model, 'text'))
 
-    def test_str(self):
+    def test_string_representation(self):
         """string test """
         string_repr = str(self.review_model)
-        self.assertIn("[Review]", str)
-        self.assertIn("id", str)
-        self.assertIn("created_at", str)
+        self.assertIn("[Review]", string_repr)
+        self.assertIn("id", string_repr)
+        self.assertIn("created_at", string_repr)
         self.assertIn("updated_at", str)
-        self.assertIn("place_id", str)
-        self.assertIn("user_id", str)
-        self.assertIn("text", str)
+        self.assertIn("place_id", string_repr)
+        self.assertIn("user_id", string_repr)
+        self.assertIn("text", string_repr)
 
     def test_to_dict_method(self):
         """ dictionary test"""
