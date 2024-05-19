@@ -48,7 +48,7 @@ class FileStorage:
 
         with open(self.__file_path, 'w') as file:
             json.dump(serialized_objects, file)
-
+    
     def reload(self):
         """Deserializes the file to objects"""
         if path.exists(self.__file_path):
@@ -61,5 +61,3 @@ class FileStorage:
                     obj_instance = obj_class(**obj_data)
                     # Store instances
                     self.__objects[key] = obj_instance
-
-    
