@@ -20,10 +20,17 @@ class TestConsole(unittest.TestCase):
     def setUp(self):
         """ """
         self.console.preloop()
+        self._reset_storage()
 
     def tearDown(self):
         """ """
         self.console.postloop()
+        self._reset_storage()
+
+    def _reset_storage(self):
+        """Reset storage"""
+        storage.all().clear()
+        storage.save()
 
     @patch('sys.stdout', new_callable=StringIO)
     def assert_stdout(self, expected_output, command,mock_stdout):
@@ -31,12 +38,13 @@ class TestConsole(unittest.TestCase):
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
     def test_create_show_destroy_all_update_commands(self):
-        storage.reset()
-
         # do_reate
-        expected_output = "f1r57-1n574nc3\n"
-        self.assert_stdout(expected_output, "create BaseModel")
-        obj = storage.all()['BaseModel.f1r57-1n574nc3']
+        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+            self.console.onecmd("create BaseModel")
+            obj_id = mock_stdout.getvalue().strip()
+            self.assertTrue(f'BaseModel.{obj_id}' in storage.all())
+            
+        obj = storage.all()[f'BaseModel.{obj_id}']
 
         # do_Show
         expected_output = str(obj) + '\n'
@@ -49,9 +57,11 @@ class TestConsole(unittest.TestCase):
         # do_all
         obj1 = BaseModel()
         obj2 = BaseModel()
+        obj1.save()
+        obj2.save()
         expected_output = "[{}, {}]\n".format(str(obj1), str(obj2))
         self.assert_stdout(expected_output, "all BaseModel")
-
+       
         # do_update
         self.assert_stdout(
             "",
