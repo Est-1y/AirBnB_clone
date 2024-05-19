@@ -2,7 +2,7 @@
 """File storage testing """
 
 import unittest
-from models import FileStorage
+from models import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -16,7 +16,7 @@ import os
 class TestFileStorage(unittest.TestCase):
     """storage test """
     def setUp(self):
-        self.file_storage = FileStorage()
+        self.file_storage = storage()
 
     def tearDown(self):
         """ """
@@ -67,19 +67,19 @@ class TestFileStorage(unittest.TestCase):
         key2 = "{}.{}".format(obj2.__class__.__name__, obj2.id)
         key3 = "{}.{}".format(obj3.__class__.__name__, obj3.id)
 
-        self.assertIn(key1, self.file_storage._FileStorage__objects)
-        self.assertIn(key2, self.file_storage._FileStorage__objects)
-        self.assertIn(key3, self.file_storage._FileStorage__objects)
+        self.assertIn(key1, self.file_storage.all)
+        self.assertIn(key2, self.file_storage.all)
+        self.assertIn(key3, self.file_storage.all)
         self.assertEqual(
-            self.file_storage._FileStorage__objects[key1].to_dict(),
+            self.file_storage.all[key1].to_dict(),
             obj1.to_dict()
         )
         self.assertEqual(
-            self.file_storage._FileStorage__objects[key2].to_dict(),
+            self.file_storage.all[key2].to_dict(),
             obj2.to_dict()
         )
         self.assertEqual(
-            self.file_storage._FileStorage__objects[key3].to_dict(),
+            self.file_storage.all[key3].to_dict(),
             obj3.to_dict()
         )
 
