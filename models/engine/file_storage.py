@@ -18,7 +18,7 @@ from models.review import Review
 class FileStorage:
     """ Manage storage of bnb models in JSON file format"""
    
-CLASSES = {
+    CLASSES = {
         'BaseModel': BaseModel,
         'User': User,
         'State': State,
