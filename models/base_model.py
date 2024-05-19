@@ -24,7 +24,7 @@ class BaseModel:
             self.updated_at = datetime.now()
             # models.storage.new(self)
 
-    def __str__(self): -> str:
+    def __str__(self) -> str:
         """It returns the string of an instance"""
         class_name = self.__class__.__name__
         return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
