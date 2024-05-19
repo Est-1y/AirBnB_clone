@@ -14,6 +14,10 @@ class TestUserModel(unittest.TestCase):
     """user model test """
     def setUp(self):
         self.user_model = User()
+        self.user_model.email = "user@example.com"
+        self.user_model.password = "password123"
+        self.user_model.first_name = "Esther"
+        self.user_model.last_name = "Obongo"
 
     def tearDown(self):
         del self.user_model
