@@ -117,46 +117,67 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
+        class_name = args[0]
+        if class_name not in self.CLASSES:
+            print("** class doesn't exist **")
+            return
+        
         try:
-            class_name = args[0]
             object = self.CLASSES[class_name]()
             object.save()
             print(object.id)
-        except ImportError:
-            print("** class doesn't exist **")
+        except Exception as e:
+            print(e)
 
     def do_show(self, line):
         """Prints string"""
         args = line.split()
         if not args:
             print("** class name missing **")
-        elif args[0] not in self.CLASSES:
+            return
+
+        class_name = args[0]
+        if class_name not in self.CLASSES:
             print("** class doesn't exist **")
-        elif len(args) < 2:
+            return
+        if len(args) < 2:
             print("** instance id missing **")
-        else:
+            return
+
+        try:
             key = "{}.{}".format(args[0], args[1])
             if key not in storage.all():
                 print("** no instance found **")
             else:
                 print(storage.all()[key])
-
+        except Exception as e:
+            print(e)
+            
     def do_destroy(self, line):
         """Deletes instances"""
         args = line.split()
         if not args:
             print("** class name missing **")
-        elif args[0] not in self.CLASSES:
+            return
+        class_name = args[0]
+        if class_name not in self.CLASSES:
             print("** class doesn't exist **")
-        elif len(args) < 2:
+            return
+
+        if len(args) < 2:
             print("** instance id missing **")
-        else:
+            return
+
+        try:
             key = "{}.{}".format(args[0], args[1])
             if key not in storage.all():
                 print("** no instance found **")
             else:
                 del storage.all()[key]
                 storage.save()
+        except Exception as e:
+            print(e)
+        
 
     def do_all(self, line):
         """ Deletes instances
