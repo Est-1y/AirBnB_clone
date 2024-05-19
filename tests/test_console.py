@@ -26,7 +26,7 @@ class TestConsole(unittest.TestCase):
         self.console.postloop()
 
     @patch('sys.stdout', new_callable=StringIO)
-    def assert_stdout(self, expected_output, mock_stdout, command):
+    def assert_stdout(self, expected_output, command,mock_stdout):
         self.console.onecmd(command)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
