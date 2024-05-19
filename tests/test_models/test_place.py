@@ -8,14 +8,13 @@ from datetime import datetime
 import os
 
 
-class test_place(test_basemodel):
-    def __init__(self, *args, **kwargs):
-        """place test """
-        super().__init__(*args, **kwargs)
-        self.name = "Place"
-        self.value = Place
+class TestPlaceModel(unittest.TestCase):
+    """place test """
+    def setUp(self):
+        self.place_model = Place()  
 
     def tearDown(self):
+        """ """
         del self.place_model
 
     def test_instance_creation(self):
@@ -56,6 +55,7 @@ class test_place(test_basemodel):
         self.assertIn("amenity_ids", str)
 
     def test_to_dict(self):
+        """ """
         place_dict = self.place_model.to_dict()
         self.assertIsInstance(place_dict, dict)
         self.assertEqual(place_dict['__class__'], 'Place')
