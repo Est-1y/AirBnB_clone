@@ -12,9 +12,6 @@ class BaseModel:
     
     def __init__(self, *args, **kwargs):
         """It initializes a new model"""
-        def __init__(self, *args, **kwargs):
-        """Initialize a new instance of BaseModel.
-        """
         if kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
@@ -28,7 +25,7 @@ class BaseModel:
             # models.storage.new(self)
 
     def __str__(self): -> str:
-        """It returns the string representation of an instance"""
+        """It returns the string of an instance"""
         class_name = self.__class__.__name__
         return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
 
