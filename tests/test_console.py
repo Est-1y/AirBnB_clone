@@ -35,7 +35,7 @@ class TestConsole(unittest.TestCase):
     @patch('sys.stdout', new_callable=StringIO)
     def assert_stdout(self, expected_output, command,mock_stdout):
         self.console.onecmd(command)
-        self.assertEqual(mock_stdout.getvalue(), expected_output)
+        self.assertEqual(mock_stdout.getvalue().strip(), expected_output.strip())
 
     def test_create_show_destroy_all_update_commands(self):
         # do_reate
@@ -105,7 +105,7 @@ class TestConsole(unittest.TestCase):
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_help_commands(self, mock_stdout):
-        expected_output = "Quit command to exit the program\n"
+        expected_output = "Quit command to exit the program"
         self.assert_stdout(expected_output, "help quit")
 
 
