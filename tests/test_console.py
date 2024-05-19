@@ -61,19 +61,19 @@ class TestConsole(unittest.TestCase):
     def test_invalid_commands(self):
         storage.reset()
 
-        # Invalid_create command
+        # Invalid_create -command
         expected_output = "** class doesn't exist **\n"
         self.assert_stdout(expected_output, "create InvalidClass")
 
-        # Invalid_show command
+        # Invalid_show -command
         expected_output = "** class doesn't exist **\n"
         self.assert_stdout(expected_output, "show InvalidClass")
 
-        # Invalid_destroy command
+        # Invalid_destroy -command
         expected_output = "** class doesn't exist **\n"
         self.assert_stdout(expected_output, "destroy InvalidClass")
 
-        # Invalid_all command
+        # Invalid_all -command
         expected_output = "** class doesn't exist **\n"
         self.assert_stdout(expected_output, "all InvalidClass")
 
