@@ -3,7 +3,7 @@
 import unittest
 import os
 from datetime import datetime
-from models import Amenity
+from models.amenity import Amenity
 
 
 class TestAmenityModel(unittest.TestCase):
@@ -44,4 +44,4 @@ class TestAmenityModel(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.ma
+    unittest.main()
