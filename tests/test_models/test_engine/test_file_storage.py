@@ -16,11 +16,11 @@ import os
 class TestFileStorage(unittest.TestCase):
     """storage test """
     def setUp(self):
-        self.file_storage = storage.FileStorage()
+        storage.reset()
 
     def tearDown(self):
         """ """
-        del self.file_storage
+        storage.reset()
         try:
             os.remove("file.json")
         except FileNotFoundError:
@@ -28,18 +28,18 @@ class TestFileStorage(unittest.TestCase):
 
     def test_all_method(self):
         """ all tests"""
-        objects_dict = self.file_storage.all()
+        objects_dict = storage.all()
         self.assertIsInstance(objects_dict, dict)
-        self.assertEqual(objects_dict, self.file_storage._FileStorage__objects)
+        self.assertEqual(objects_dict, storage._FileStorage__objects)
 
     def test_new_method(self):
         """new test """
         new_object = BaseModel()
-        self.file_storage.new(new_object)
+        storage.new(new_object)
         key = "{}.{}".format(new_object.__class__.__name__, new_object.id)
-        self.assertIn(key, self.file_storage._FileStorage__objects)
+        self.assertIn(key, storage.all())
         self.assertEqual(
-            self.file_storage._FileStorage__objects[key],
+            storage.all()[key],
             new_object
         )
 
@@ -57,29 +57,29 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(os.path.exists("file.json"))
 
         # Clear object
-        del self.file_storage._FileStorage__objects
+        storage.reset()
 
         # Reload the objects
-        self.file_storage.reload()
+        storage.reload()
 
         # Check for matches in file
         key1 = "{}.{}".format(obj1.__class__.__name__, obj1.id)
         key2 = "{}.{}".format(obj2.__class__.__name__, obj2.id)
         key3 = "{}.{}".format(obj3.__class__.__name__, obj3.id)
 
-        self.assertIn(key1, self.file_storage.all)
-        self.assertIn(key2, self.file_storage.all)
-        self.assertIn(key3, self.file_storage.all)
+        self.assertIn(key1, storage.all())
+        self.assertIn(key2, storage.all())
+        self.assertIn(key3, storage.all())
         self.assertEqual(
-            self.file_storage.all[key1].to_dict(),
+            storage.all()[key1].to_dict(),
             obj1.to_dict()
         )
         self.assertEqual(
-            self.file_storage.all[key2].to_dict(),
+            sstorage.all()[key2].to_dict(),
             obj2.to_dict()
         )
         self.assertEqual(
-            self.file_storage.all[key3].to_dict(),
+            storage.all()[key3].to_dict(),
             obj3.to_dict()
         )
 
