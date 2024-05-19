@@ -2,6 +2,8 @@
 """place unittest """
 
 import unittest
+from models.base_model import BaseModel
+from typing import List
 from models import Place
 from datetime import datetime
 import os
