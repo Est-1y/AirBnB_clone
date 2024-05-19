@@ -1,0 +1,33 @@
+@import url(../styles/5-filters.css);
+
+.popover {
+    display: none;
+    background-color: #FAFAFA;
+    list-style-type: none;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    opacity: 1;
+}
+
+.popover li ul {
+    list-style-type: none;
+}
+
+.popover li {
+    padding: 3px 0;
+}
+
+.locations:hover {
+    .popover {
+        display: block;
+    }
+}
+
+.amenities:hover {
+    .popover {
+        display: block;
+    }
+}
