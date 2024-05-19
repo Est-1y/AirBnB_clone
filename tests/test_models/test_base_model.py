@@ -8,16 +8,16 @@ from datetime import datetime
 import os
 
 
-class test_basemodel(unittest.TestCase):
+class TestBaseModel(unittest.TestCase):
     """basemodel unittest """
     def setUp(self):
-        pass
+        self.base_model = BaseModel()
 
     def tearDown(self):
         """ """
         del self.base_model
 
-def test_instance_creation(self):
+    def test_instance_creation(self):
         """ Instance creation and updation"""
         self.assertIsInstance(self.base_model, BaseModel)
         self.assertTrue(hasattr(self.base_model, 'id'))
