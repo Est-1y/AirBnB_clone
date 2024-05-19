@@ -7,5 +7,5 @@ from models.base_model import BaseModel
 
 class City(BaseModel):
     """ The city class containing attributes"""
-    state_id = ""
-    name = ""
+    state_id: str = ""
+    name: str = ""
