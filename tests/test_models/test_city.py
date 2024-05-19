@@ -4,6 +4,7 @@
 import unittest
 from datetime import datetime
 import os
+from models.base_model import BaseModel
 from models.city import City
 
 
