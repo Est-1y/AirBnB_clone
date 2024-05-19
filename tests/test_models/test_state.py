@@ -24,16 +24,17 @@ class TestStateModel(unittest.TestCase):
         self.assertTrue(hasattr(self.state_model, 'updated_at'))
         self.assertTrue(hasattr(self.state_model, 'name'))
 
-    def test_str(self):
+    def test_string_representation(self):
         """ """
-        str = str(self.state_model)
-        self.assertIn("[State]", str)
-        self.assertIn("id", str)
-        self.assertIn("created_at", str)
-        self.assertIn("updated_at", str)
-        self.assertIn("name", str)
+        string_repr = str(self.state_model)
+        self.assertIn("[State]", string_repr)
+        self.assertIn("id", string_repr)
+        self.assertIn("created_at", string_repr)
+        self.assertIn("updated_at", string_repr)
+        self.assertIn("name", string_repr)
 
     def test_to_dict_method(self):
+        """test to dictionary"""
         state_dict = self.state_model.to_dict()
         self.assertIsInstance(state_dict, dict)
         self.assertEqual(state_dict['__class__'], 'State')
