@@ -35,10 +35,7 @@ class TestConsole(unittest.TestCase):
     @patch('sys.stdout', new_callable=StringIO)
     def assert_stdout(self, expected_output, command, mock_stdout):
         self.console.onecmd(command)
-        actual_output = mock_stdout.getvalue().strip()
-        print(f"Expected: {expected_output}")
-        print(f"Actual: {actual_output}")
-        self.assertEqual(actual_output, expected_output.strip())
+        self.assertEqual(mock_stdout.getvalue().strip(), expected_output.strip())
         
     def test_create_show_destroy_all_update_commands(self):
         # do_reate
