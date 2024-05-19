@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Unittest """
-
 import unittest
 import os
 from datetime import datetime
