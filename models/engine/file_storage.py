@@ -17,8 +17,8 @@ from models.review import Review
 
 class FileStorage:
     """ Manage storage of bnb models in JSON file format"""
-    __file_path = 'file.json' # path to file
-    __objects = {} # storage dictionary
+    __file_path = 'file.json'  # path to file
+    __objects = {}  # storage dictionary
 
     def all(self):
         """Returns stored models' dictionary"""
