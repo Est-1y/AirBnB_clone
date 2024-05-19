@@ -28,8 +28,8 @@ CLASSES = {
         'Review': Review
     }
 
-    __file_path = "file.json"  # path to the JSON file
-    __objects = {}  # dictionary to store all objects by <class name>.id
+    __file_path = "file.json"  # path to file
+    __objects = {}  # dictionary
 
     def all(self):
         """Returns objects"""
@@ -50,8 +50,7 @@ CLASSES = {
             json.dump(serialized_objects, file)
 
     def reload(self):
-        """
-        Deserializes the file to objects"""
+        """Deserializes the file to objects"""
         if path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding="utf-8") as file:
                 serialized_objects = json.load(file)
