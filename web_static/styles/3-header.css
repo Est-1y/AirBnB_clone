@@ -1,0 +1,11 @@
+/*header css*/
+header {
+    height: 70px;
+    flex-shrink: 0;
+    width: 100%;
+    align-items: center;
+    background-image: url('/images/logo.png');
+    background-repeat: no-repeat;
+    border-bottom: 1px solid #CCCCCC;
+    background-position: 20px center;
+}
